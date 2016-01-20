@@ -1,0 +1,21 @@
+<apex:page standardController="Reservation__c" recordSetvar="reservations" showHeader="false">
+    <apex:listViews type="Reservation__c" />
+  <apex:pageBlock title="Viewing reservations">
+  <apex:form id="theForm">
+    <apex:panelGrid columns="2">
+      <apex:outputLabel value="View:"/>
+      <apex:selectList value="{!filterId}" size="1">
+        <apex:actionSupport event="onchange" rerender="list"/>
+        <apex:selectOptions value="{!listviewoptions}"/>
+      </apex:selectList>
+    </apex:panelGrid>
+
+    <apex:pageBlockSection >
+    
+      <!-- apex:dataList var="a" value="{!reservations}" id="list">
+        {!a.Check_In_Date__c}   {!a.Office__c}
+      </apex:dataList-->
+    </apex:pageBlockSection>
+  </apex:form> 
+  </apex:pageBlock>
+</apex:page>

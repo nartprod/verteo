@@ -1,0 +1,3 @@
+<apex:page standardcontroller="Reservation__c" extensions="ReservationEditController" action="{!deleteRecord}" showHeader="true" sidebar="true" tabStyle="Reservation__c" standardStylesheets="true" >
+
+</apex:page>

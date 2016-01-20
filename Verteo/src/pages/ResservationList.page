@@ -1,0 +1,14 @@
+<apex:page standardController="Reservation__c" showHeader="false" tabStyle="Reservation__c" >
+    <style type="text/css">
+        input.btn { display: none; }
+    </style>
+      <apex:includeScript value="//code.jquery.com/jquery-2.0.3.min.js"/>
+        <apex:listViews type="Reservation__c" />
+        
+        
+
+    <script type="text/javascript">
+
+    	$(".actionLink").css("display","none");
+    </script>
+</apex:page>

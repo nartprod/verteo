@@ -1,0 +1,20 @@
+<apex:page standardcontroller="Reservation__c" extensions="ReservationEditController" showHeader="true" sidebar="true" tabStyle="Reservation__c" standardStylesheets="true" >
+<!--  script>function setFocusOnLoad() {}</script-->
+<apex:form >  
+	<apex:sectionHeader title="Reservation Edit" subtitle="{!if(Reservation__c.Id==null,'New Reservation',Reservation__c.name)}" description="Make changes to your reservation then click Save button" /> 
+	
+	   <apex:pageBlock mode="edit" title="Reservation Edit">
+	   <apex:pagemessages ></apex:pagemessages>
+	       <apex:pageBlockButtons location="both">
+           <apex:commandButton value="Save" action="{!Save}"/>
+           <apex:commandButton value="Cancel" action="{!Cancel}" immediate="true"/>                                
+       </apex:pageBlockButtons>
+	   
+	     <apex:pageBlockSection columns="1" title="Reservation Information" >   
+	         <apex:inputField value="{!myResObj.Check_In_Date__c}"></apex:inputField>
+	         <apex:inputField value="{!myResObj.Employee__c}"></apex:inputField>
+	         <apex:inputField value="{!myResObj.Desk__c}"></apex:inputField>
+	      </apex:pageBlockSection>
+	   </apex:pageBlock>
+ </apex:form>  
+</apex:page>

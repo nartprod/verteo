@@ -1,0 +1,48 @@
+<apex:page standardController="Reservation__c" extensions="ReservationRecordSearchController" docType="html-5.0">   
+    <script language="JavaScript" type="text/javaScript">
+            
+                function CreateReservation(deskId,date){
+                    readCell(deskId,date);
+                   }
+            </script>   
+    <apex:form id="fm">  
+ 	Office<!--  apex:inputText value="{!office}" label="Input"/-->   
+ 	   <apex:selectList id="chooseOffice" value="{!office}" size="1">
+            <apex:selectOption itemValue="Office 1" itemLabel="Office 1"/>
+            <apex:selectOption itemValue="Office 2" itemLabel="Office 2"/>
+        </apex:selectList> 
+ 	
+ 	
+ 	Floor<!-- apex:inputText value="{!floor}" label="Input"/-->  
+ 	 	<apex:selectList id="chooseFloor" value="{!floor}" size="1">
+            <apex:selectOption itemValue="01" itemLabel="01"/>
+            <apex:selectOption itemValue="02" itemLabel="02"/>
+        </apex:selectList> 
+    <b> Check In Date </b><apex:input value="{!myDate}" id="theTextInput" type="date"/>
+	  <apex:commandButton value="Search records" action="{!search}"/>  
+	  <apex:commandButton value="Clear records" action="{!search}"/>  
+	  
+
+   	   <apex:pageBlock title="Reservation GridRecords" id="reservationgrid_list"> 
+           <apex:actionFunction name="readCell" action="{!createReservation}" rerender="fm" >
+       			<apex:param name="firstparm" assignTo="{!clickedDeskId}" value=""/>
+                <apex:param name="secondparm" assignTo="{!clickedDate}" value=""/>
+           </apex:actionFunction>
+
+		   <b> Check in Date  {!myDate}</b>
+		   <apex:pageMessages />
+           
+            <!-- Reservation Grid List -->
+            <apex:pageBlockTable value="{! seatRec }" var="grid">
+                <apex:column headerValue="Row " value="{! grid.row }"/>
+                <apex:column headerValue="Seat 1" value="{! grid.seat1 }" onclick="CreateReservation('{!grid.seat1 }','{!myDate}')"/>
+                <apex:column headerValue="Seat 2" value="{! grid.seat2 }"/>
+                <apex:column headerValue="Seat 3" value="{! grid.seat3 }"/>
+                <apex:column headerValue="Seat 4" value="{! grid.seat4 }"/>                                                
+ 
+            </apex:pageBlockTable>
+        </apex:pageBlock>      
+      
+      
+  </apex:form>  
+ </apex:page>

@@ -1,0 +1,65 @@
+<apex:page standardController="Reservation__c" extensions="ReservationSystem"  >   
+	<input id="hiddenElementId" type="hidden" />
+    <script language="JavaScript" type="text/javaScript">
+            window.onload = setFocus
+            function setFocus() {
+              document.getElementById("hiddenElementId").focus();
+				};
+                function CreateReservation(deskId,date){
+                 //alert('vars :'+deskId+':'+deskId+':'+date);
+                 //var navigateFlag =  confirm('Click OK to change reservation.');
+                    readCell(deskId,date);
+                   }
+
+            </script>   
+    <apex:form id="fm">  
+    <table style="float:left;width:600px;margin-left:0px;background-color:#F2F2F2;" border="0">
+       				<tr>
+	                    <td><apex:outputLabel ><b>Select your office:</b></apex:outputLabel></td>
+	                    <td><apex:selectList id="chooseOffice" value="{!office}" size="1">
+					            <apex:selectOption itemValue="Office 1" itemLabel="Office 1"/>
+					            <apex:selectOption itemValue="Office 2" itemLabel="Office 2"/>
+					        </apex:selectList></td>   
+                    </tr>    
+                    <tr>
+	                    <td><apex:outputLabel ><b>Select your floor:</b></apex:outputLabel></td>
+	                    <td><apex:selectList id="chooseFloor" value="{!floor}" size="1">
+						            <apex:selectOption itemValue="01" itemLabel="01"/>
+						            <apex:selectOption itemValue="02" itemLabel="02"/>
+						        </apex:selectList> </td>
+					</tr> 
+					<tr>
+	                    <td><apex:outputLabel ><b>Select your reservation Date:</b></apex:outputLabel></td>
+	                    <td><apex:inputField value="{!myResObj.Check_In_Date__c}"/></td> 
+	  					<td><apex:commandButton value="Search Reservations" action="{!search}"/></td>   
+                    </tr>   
+                                        
+    </table>
+
+ 
+
+   	   <apex:pageBlock title="Reservation Seating Chart" id="reservationgrid_list"> 
+           <apex:actionFunction name="readCell" action="{!createReservation}" rerender="fm" >
+       			<apex:param name="firstparm" assignTo="{!clickedDeskId}" value=""/>
+                <apex:param name="secondparm" assignTo="{!clickedDate}" value=""/>
+           </apex:actionFunction>
+
+		   <b> Reservation Date  {!displayDate}</b>
+		   <br><apex:pageMessages /></br>
+           <apex:commandButton value="Change Reservation" action="{!changeReservation}" disabled="{!changeResButton}"/> 
+            <!-- Reservation Grid List -->
+
+	            <apex:pageBlockTable value="{! seatRec }" var="grid">
+	                <apex:column headerValue="Row " value="{! grid.row }"/>
+	                <apex:column headerValue="Seat 1" value="{! grid.seat1 }" onclick="CreateReservation('{!grid.seat1 }','{!myResObj.Check_In_Date__c}')"/>
+	                <apex:column headerValue="Seat 2" value="{! grid.seat2 }" onclick="CreateReservation('{!grid.seat2 }','{!myResObj.Check_In_Date__c}')"/>
+	                <apex:column headerValue="Seat 3" value="{! grid.seat3 }" onclick="CreateReservation('{!grid.seat3 }','{!myResObj.Check_In_Date__c}')"/>
+	                <apex:column headerValue="Seat 4" value="{! grid.seat4 }" onclick="CreateReservation('{!grid.seat4 }','{!myResObj.Check_In_Date__c}')"/>                                                
+	 			</apex:pageBlockTable>
+				<br><apex:commandButton value="Change Reservation" action="{!changeReservation}" disabled="{!changeResButton}"/></br>  
+
+        </apex:pageBlock>      
+      
+      
+  </apex:form>  
+ </apex:page>

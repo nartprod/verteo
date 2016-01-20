@@ -1,0 +1,14 @@
+<apex:page controller="inputdate" >
+<script>
+function DynamicDatePicker(d_id)
+{
+    DatePicker.pickDate(false,d_id.id,false);
+}
+</script>
+  <apex:form >
+ 
+  <apex:inputText id="time" value="{!inputdate}" onfocus="DynamicDatePicker(this);" onchange="checkDateFormatt(this.id);" size="20" disabled="false" style="width:150px;"/>
+  <apex:commandButton action="{!testdate}" value="Save" />
+  </apex:form>
+ 
+</apex:page>
